@@ -4,49 +4,12 @@ const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 // Function to fetch weather data
 async function getWeather(city) {
-    // Show loading state at the START
-    showLoading();
-    
-    // Disable search button and update text
-    searchBtn.disabled = true;
-    searchBtn.textContent = 'Searching...';
-    
-    // Build the API URL
     const url = `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`;
-    
-    // Wrap in try-catch block
     try {
-        // Use await with axios.get()
         const response = await axios.get(url);
-        
-        // Log the response (for debugging)
-        console.log('Weather Data:', response.data);
-        
-        // Call displayWeather with response.data
         displayWeather(response.data);
-        
     } catch (error) {
-        // Log the error
-        console.error('Error fetching weather:', error);
-        
-        // Show appropriate error message based on error type
-        if (error.response && error.response.status === 404) {
-            // City not found error
-            showError('City not found. Please check the spelling and try again.');
-        } else if (error.response && error.response.status === 401) {
-            // API key error
-            showError('API key error. Please check your configuration.');
-        } else if (error.message === 'Network Error') {
-            // Network error
-            showError('Network error. Please check your internet connection.');
-        } else {
-            // Generic error
-            showError('Could not fetch weather data. Please try again.');
-        }
-    } finally {
-        // Re-enable search button and restore text
-        searchBtn.disabled = false;
-        searchBtn.textContent = '🔍 Search';
+        console.error(error);
     }
 }
 
