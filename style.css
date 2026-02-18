@@ -77,6 +77,56 @@ h1 {
     transform: scale(0.95);
 }
 
+/* Style .recent-searches-section */
+.recent-searches-section {
+    margin: 20px 0;
+    display: none;
+}
+
+.recent-searches-section.active {
+    display: block;
+}
+
+/* Style recent searches heading */
+.recent-searches-section h2 {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Style #recent-searches-container */
+#recent-searches-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Style .recent-search-btn */
+.recent-search-btn {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for recent search buttons */
+.recent-search-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Active/click effect */
+.recent-search-btn:active {
+    transform: scale(0.95);
+}
+
 #weather-display {
     margin-top: 30px;
 }

@@ -12,6 +12,16 @@ function WeatherApp(apiKey) {
     this.cityInput = document.getElementById('city-input');
     this.weatherDisplay = document.getElementById('weather-display');
     
+    // Add new DOM references
+    this.recentSearchesSection = document.getElementById('recent-searches-section');
+    this.recentSearchesContainer = document.getElementById('recent-searches-container');
+    
+    // Initialize recent searches array
+    this.recentSearches = [];
+    
+    // Set maximum number of recent searches to save
+    this.maxRecentSearches = 5;
+    
     // Call init method to set up event listeners
     this.init();
 }
@@ -32,6 +42,20 @@ WeatherApp.prototype.init = function() {
     
     // Display welcome message
     this.showWelcome();
+};
+
+// Load recent searches from localStorage
+WeatherApp.prototype.loadRecentSearches = function() {
+    // Get recent searches from localStorage
+    const saved = localStorage.getItem('recentSearches');
+    
+    // If data exists, parse it and store in this.recentSearches
+    if (saved) {
+        this.recentSearches = JSON.parse(saved);
+    }
+    
+    // Display the recent searches
+    this.displayRecentSearches();
 };
 
 // Handle search logic
